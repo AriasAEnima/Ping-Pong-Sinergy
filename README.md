@@ -16,7 +16,7 @@ Esta version del famoso juego nos permitirá movernos en dos dimensiones (como e
 
 Un ejemplo de lo que podría ser la mesa de juego:
 
-![Sencillos](generalmedia/tablerosencillo.PNG)
+![Sencillos](generalmedia/tablerosencillo.png)
 
 # 2 vs 2
 
@@ -28,19 +28,19 @@ A2-B1-A1-B2 o A2-B2-A1-B1 etc ... ; solo será permitido utilizar paredes latera
 * Los jugadores de un mismo equipo no se pueden sobreponer.
 
 
-![Sencillos](generalmedia/tablerodobles.PNG)
+![Sencillos](generalmedia/tablerodobles.png)
 
 
 Un ejemplo grafico:
 
 Respuesta 1 | Respuesta 2
 ----|----|
-![pasouno](generalmedia/pasouno.PNG) | ![pasodos](generalmedia/pasodos.PNG)
+![pasouno](generalmedia/pasouno.png) | ![pasodos](generalmedia/pasodos.png)
 Aqui Verde inicia. | Café decide responder atras para que Rosado tenga que cruzar el campo , Morado se ubica de tal forma de que no estorbe a la respuesta de Café. |
 
 Respuesta 3 | Respuesta 4
 ----|----
-![pasotres](generalmedia/pasotres.PNG) | ![pasocuatro](generalmedia/pasocuatro.PNG)
+![pasotres](generalmedia/pasotres.png) | ![pasocuatro](generalmedia/pasocuatro.png)
 Rosa y Verde responden intercambiando de posición. | Morado se adelanta para que Verde tenga que cruzar el campo.
 
 Esto se repetirá hasta que un equipo se equivoque en el orden o se logre poner el disco en el arco.
@@ -92,4 +92,4 @@ Esto implica que además de lograr golpear el disco/pelota se debe coordinar con
 
 ## Licencia
 
-This project is licensed under the GNU General Public License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License  - see the [LICENSE](LICENSE) file for details
