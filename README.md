@@ -1,13 +1,25 @@
 # Ping-Pong-Sinergy
-Es una version mejorada con nuevas funcionalidades (2 vs 2) del famoso juego Ping Pong de Atari. Nos permitirá un rato de entretenimiento y de habilidad con amigos.
+Es una version mejorada con nuevas funcionalidades del famoso juego Ping Pong de Atari. Nos permitirá un rato de entretenimiento y de habilidad con amigos.
+
+Podremos jugar partidas 1 vs 1 o 2 vs 2 con amigos, ver estadísticas y ranking del juego.
+
 ## Autor
 * **J. Eduardo Arias Barrera** -  [AriasAEnima](https://github.com/AriasAEnima)
 
-## Descripción:
+## Descripción del Juego:
+Dispondremos de información y vistas similares:
+
+ Reglas | Puntuaciones
+---|---|
+![Reglas](generalmedia/reglas.png) | ![puntuaciones](generalmedia/puntuaciones.png) |
+
+Ranking | Salas
+---|---
+![salas](generalmedia/ranking.png) | ![salas](generalmedia/sala.png)
 
 ## 1 vs 1
 
-Esta version del famoso juego nos permitirá movernos en dos dimensiones (como el hockey de aire que vemos en los salones de juegos) y jugar con amigos estando en diferentes lugares.
+En esta modalidad de juego nos permitirá movernos en dos dimensiones (como el hockey de aire que vemos en los salones de juegos).
 
 #### Reglas de sencillos:
 * Podremos utilizar todas las paredes que no correspondan al arco como rebote.
