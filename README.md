@@ -61,41 +61,49 @@ Esto implica que además de lograr golpear el disco/pelota se debe coordinar con
 
 ## Historias de Usuario
 
-#### 1) Como Usuario Quiero conocer la reglas de juego.
+#### 0) Como Usuario Quiero Registrarme.
+####  Criterios de aceptación:
+* Se muestra un formulario para crear un usuario.
+
+#### 1) Como Usuario Quiero Ingresar con mi usuario.
+####  Criterios de aceptación:
+* El usuario puede ingresar con mi nick y contraseña.
+
+#### 2) Como Usuario Quiero conocer la reglas de juego.
 ####  Criterios de aceptación:
 * Se muestra una pantalla de reglas de juego con ilustraciones útiles.
 
-#### 2) Como Usuario Quiero crear una cuenta, para guardar mis estadísticas y poder jugar.
+#### 3) Como Usuario Quiero crear una cuenta, para guardar mis estadísticas y poder jugar.
 #### Criterios de aceptación:
 * Se pedirá un login o un registro
 * Se puede crear un usuario, con un nick y una contraseña.
 
-#### 3) Como Usuario Quiero entrar a una sala con un jugador. (1 vs 1)
+#### 4) Como Usuario Quiero entrar a una sala con un jugador. (1 vs 1)
 ####  Criterios de aceptación:
 * Se puede ingresar a una sala dos jugadores.
 * Se puede configurar para un juego 1 vs 1.
 
-#### 4) Como Usuario Quiero jugar Ping-Pong-Sinergy contra otro jugador.
+#### 5) Como Usuario Quiero jugar Ping-Pong-Sinergy contra otro jugador.
 ####  Criterios de aceptación:
 * Se puede iniciar una partida de Ping-Pong-Sinergy contra otro jugador.
   * Se muestran puntaciones en tiempo real.
 * Cumple con las reglas de juego determinadas de "sencillos".
 
 
-#### 5) Como Usuario Quiero ver mis estadísticas.
+#### 6) Como Usuario Quiero ver mis estadísticas.
 ####  Criterios de aceptación:
 * Se muestra una tabla o similar que muestren datos del usuario que resuman sus partidas.
 
-#### 6) Como Usuario Quiero ver los mejores jugadores.
+#### 7) Como Usuario Quiero ver los mejores jugadores.
 ####  Criterios de aceptación:
 * Se muestra una tabla que muestren los mejores jugadores en base a sus estadísticas.
 
-#### 7) Como Usuario Quiero entrar a una sala con 3 jugadores mas (2 vs 2) y establecer equipos.
+#### 8) Como Usuario Quiero entrar a una sala con 3 jugadores mas (2 vs 2) y establecer equipos.
 ####  Criterios de aceptación:
 * Se puede ingresar a una sala cuatro jugadores.
 * Se puede configurar equipos y un juego de dobles.
 
-#### 8) Como Usuario Quiero jugar Ping-Pong-Sinergy en parejas.
+#### 9) Como Usuario Quiero jugar Ping-Pong-Sinergy en parejas.
 ####  Criterios de aceptación:
 * Se puede iniciar una partida de Ping-Pong-Sinergy modo dobles.
   * Se muestran puntaciones en tiempo real.
