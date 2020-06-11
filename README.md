@@ -11,7 +11,7 @@ Dispondremos de información y vistas similares:
 
  Reglas | Puntuaciones
 ---|---|
-![Reglas](generalmedia/reglas.png) | ![puntuaciones](generalmedia/puntuaciones.png) |
+![Reglas](generalmedia/Reglas.png) | ![puntuaciones](generalmedia/puntuaciones.png) |
 
 Ranking | Salas
 ---|---
