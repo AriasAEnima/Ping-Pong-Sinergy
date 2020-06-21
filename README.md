@@ -115,7 +115,7 @@ Esto implica que además de lograr golpear el disco/pelota se debe coordinar con
 ## Diseño Actual
 **Los métodos mostrados ya están implementados**
 
-![modelo](generalmedia/modelo.PNG)
+![modelo](generalmedia/modelo.png)
 
 ## Licencia
 
