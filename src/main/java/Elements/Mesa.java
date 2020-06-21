@@ -13,13 +13,15 @@ import java.awt.Rectangle;
  */
 public class Mesa extends Superficie{
    
-    public Mesa(int x, int y, int w, int h) {
+   
+    public Mesa(int x, int y, int w, int h) throws Exception {
         super(x, y, w, h);
     }   
     
-    public Mesa(int w, int h){
+    public Mesa(int w, int h) throws Exception{
         this(0,0,w,h);
-    }
+    }    
+
     
     
 }

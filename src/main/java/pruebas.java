@@ -1,6 +1,12 @@
 
 import Controllers.Arbitro;
-import Elements.Ball.Dir;
+import Controllers.ServiciosFisica;
+import Controllers.ServiciosFisica.Dir;
+import Elements.Mesa;
+import Elements.Pelota;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 
 /*
@@ -15,31 +21,33 @@ import Elements.Ball.Dir;
  */
 public class pruebas {
     public static void main(String[] args){      
-        Arbitro ar=new Arbitro(Dir.DOWN,Dir.RIGTH);
-        print(ar.getMesa());
-        print(ar.getPelota());
-        Dir newdir=ar.getPelota().ColisionMesa(ar.getMesa());    
-        while(newdir==null){
-            ar.moveBall();
-            newdir=ar.getPelota().ColisionMesa(ar.getMesa());
-        }
-        print("Resultado");
-        print(ar.getMesa());
-        print(ar.getPelota());
-        print(newdir);       
-        while(newdir!=null){
-            ar.getPelota().setDir(newdir);
-            ar.moveBall();         
-            newdir=ar.getPelota().ColisionMesa(ar.getMesa());        
-        }
-       
-        while(newdir==null){
-            ar.moveBall();
-            newdir=ar.getPelota().ColisionMesa(ar.getMesa());
-        }
-        print("Resultado 2");
-        print(ar.getMesa());
-        print(ar.getPelota());
+        try {   
+            Arbitro a=new Arbitro(Dir.UP, Dir.LEFT);
+            print("Jugadores");
+            print(a.ubicacionJugadores());
+            print("Pelota");
+            print(a.ubicacionPelota());
+//            for(int i=0 ; i<2000;i++){               
+//                if (a.huboContactoPelota()){
+//                    print(a.ubicacionPelota());
+//                }
+//                a.continuar();
+//            }          
+             
+            for(int i=0 ; i<250-50;i++){   
+                a.MoverJugador("jugador1", Dir.DOWN);
+                print("Jugadores");
+                print(a.ubicacionJugadores());   
+            }
+            for(int i=0 ; i<1000;i++){   
+                a.MoverJugador("jugador1", Dir.RIGTH);
+                print("Jugadores");
+                print(a.ubicacionJugadores());   
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(pruebas.class.getName()).log(Level.SEVERE, null, ex);
+        }     
         
     }
     

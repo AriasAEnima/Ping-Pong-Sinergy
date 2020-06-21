@@ -5,6 +5,8 @@
  */
 package Elements;
 
+import Controllers.ServiciosFisica;
+
 /**
  *
  * @author J. Eduardo Arias
@@ -12,4 +14,8 @@ package Elements;
 public interface Movible{
 
    public void move(int difx,int dify);    
+   
+   public void move();
+   
+   public void setDir(ServiciosFisica.Dir dir);
 }

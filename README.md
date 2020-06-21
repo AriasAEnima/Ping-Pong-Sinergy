@@ -110,6 +110,13 @@ Esto implica que además de lograr golpear el disco/pelota se debe coordinar con
   * Se muestra la permutación del orden y demás información del juego en dobles.
 * Cumple con las reglas de juego determinadas de "dobles".
 
+# Progreso:
+
+## Diseño Actual
+**Los métodos mostrados ya están implementados**
+
+![modelo](generalmedia/modelo.PNG)
+
 ## Licencia
 
 This project is licensed under the MIT License  - see the [LICENSE](LICENSE) file for details

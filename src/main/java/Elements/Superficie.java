@@ -5,7 +5,11 @@
  */
 package Elements;
 
+import Controllers.ServiciosFisica.Dir;
+import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -14,29 +18,28 @@ import java.awt.Rectangle;
 public abstract class Superficie {
     private int x; 
     private int y;
-    private int xright;
-    private int ydown;
     private final int w;
-    private final int h;
+    private final int h;  
 
 
-    public Superficie(int x, int y, int w, int h) {
+    public Superficie(int x, int y, int w, int h) throws Exception {
+        if (w <= 0 || h<=0){
+            throw new Exception("Ancho/alto Invalido");
+        }
         this.x = x;
         this.y = y;
         this.w = w;
-        this.h = h;
-        xright=x+w;
-        ydown=y+h;
+        this.h = h;        
     }    
 
-    public int getXright() {
-        return xright;
-    }
-
-    public int getYdown() {
-        return ydown;
-    }
-    
+    public Map<Dir, Rectangle> getColisiones(){
+        Map<Dir,Rectangle> colisiones=new HashMap<Dir, Rectangle>();
+        colisiones.put(Dir.UP, new Rectangle(x+1, y, w-1, 1));
+        colisiones.put(Dir.DOWN, new Rectangle(x+1, y+h, w-1, 1));
+        colisiones.put(Dir.LEFT, new Rectangle(x, y+1, 1, h-1));
+        colisiones.put(Dir.RIGTH, new Rectangle(x+w, y+1, 1, h-1));
+        return colisiones;
+    }    
   
     public int getWidth(){
         return w;
@@ -57,14 +60,6 @@ public abstract class Superficie {
         return y+h/2;
     }
 
-    public void setXright(int xright) {
-        this.xright = xright;
-    }
-
-    public void setYdown(int ydown) {
-        this.ydown = ydown;
-    }
-
     public void setX(int x) {
         this.x = x;
     }
@@ -75,9 +70,12 @@ public abstract class Superficie {
     
        
     @Override
-    public String toString(){
-        
-        return "Superficie:\nX: ["+this.getX()+","+this.getXright()+"]\nY: ["+this.getY()+","+this.getYdown()+"]";
+    public String toString(){        
+        Point A=new Point(x, y);
+        Point B=new Point(x+w,y);
+        Point C=new Point(x+w,y+h);
+        Point D=new Point(x,y+h);       
+        return "Superficie = A:"+A+", B: "+B+" C:"+C+" D:"+D;
     }
     
 }
