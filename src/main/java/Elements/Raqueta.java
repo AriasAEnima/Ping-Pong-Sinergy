@@ -24,13 +24,13 @@ public class Raqueta extends Superficie implements Movible{
     }
 
     @Override
-    public void move(int difx, int dify) {
+    public synchronized void move(int difx, int dify) {
         setX(getX()+difx);
         setY(getY()+dify);  
     }
 
     @Override
-    public void setDir(ServiciosFisica.Dir dir) {
+    public synchronized void setDir(ServiciosFisica.Dir dir) {
        switch (dir) {
             case LEFT:
                 dx=-MOVECONST; 
@@ -58,7 +58,7 @@ public class Raqueta extends Superficie implements Movible{
     }
 
     @Override
-    public void move() {
+    public synchronized void move() {
          move(dx,dy);
     }
     

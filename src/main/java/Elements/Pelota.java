@@ -6,7 +6,6 @@
 package Elements;
 
 import Controllers.ServiciosFisica.Dir;
-import java.awt.Rectangle;
 
 /**
  *
@@ -30,18 +29,18 @@ public class Pelota extends Superficie implements Movible{
         this(s.getCenterX()-w/2,s.getCenterY()-h/2,w,h);
     }
     
-    public void move(){   
+    public synchronized void move(){   
         move(dx,dy);
     }    
     
     @Override
-    public void  move(int difx,int dify){
+    public synchronized void  move(int difx,int dify){
         setX(getX()+difx);
         setY(getY()+dify);             
     }    
 
 
-    public void setDir(Dir dir) {      
+    public synchronized void setDir(Dir dir) {      
         switch (dir) {
             case LEFT:
                 dx=-MOVECONST;             

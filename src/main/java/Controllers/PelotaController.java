@@ -9,6 +9,7 @@ import Controllers.ServiciosFisica.Dir;
 import Elements.Mesa;
 import Elements.Pelota;
 import Elements.Raqueta;
+import java.awt.Point;
 import java.util.Collection;
 
 /**
@@ -20,17 +21,20 @@ public class PelotaController {
     private final Pelota pelota;
     private boolean reboto;
     private final Collection<Raqueta> jugadores;
+    private final Arbitro ar;
 
-    public PelotaController( Mesa mesa, Pelota pelota,Collection<Raqueta> jugadores) {      
+    public PelotaController(Arbitro ar, Mesa mesa, Pelota pelota,Collection<Raqueta> jugadores) {      
         this.mesa = mesa;
         this.pelota = pelota;
         this.jugadores =jugadores;
+        this.ar=ar;
     }
             
     
-    public void MuevaPelota(){
-        Collection<Dir> newDirs=ServiciosFisica.nextDirPelota(mesa, pelota,jugadores);
+    public synchronized void MuevaPelota(){
+        Collection<Dir> newDirs=ServiciosFisica.nextDirPelota(ar,mesa, pelota,jugadores);
         if(newDirs!=null){
+            System.out.println(pelota.ubicacion());
             System.out.println(newDirs);
             for(Dir newDir:newDirs){
                 pelota.setDir(newDir);
@@ -42,12 +46,12 @@ public class PelotaController {
         pelota.move();
     }
 
-    public boolean getReboto(){
+    public synchronized boolean getReboto(){
         return reboto;
     }
 
-    public String ubicacionPelota() {
-        return pelota.toString();
+    public synchronized Point ubicacionPelota() {
+        return pelota.ubicacion();
     }
     
 }

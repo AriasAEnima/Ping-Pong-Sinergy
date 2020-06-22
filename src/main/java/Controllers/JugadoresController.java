@@ -8,7 +8,10 @@ package Controllers;
 import Controllers.ServiciosFisica.Dir;
 import Elements.Mesa;
 import Elements.Raqueta;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,15 +20,17 @@ import java.util.Map;
  * @author J. Eduardo Arias
  */
 public class JugadoresController {
-    private Map<String,Raqueta> jugadores;
-    private Mesa mesa;
+    private final Map<String,Raqueta> jugadores;
+    private final Mesa mesa;
 
-    public JugadoresController(Map<String, Raqueta> jugadores,Mesa mesa) {
-        this.jugadores = jugadores;
+    public JugadoresController(Mesa mesa) throws Exception {
+        jugadores=new HashMap<String,Raqueta >();
+        jugadores.put("jugador1", new Raqueta(150, 50, 50, 150));
+        jugadores.put("jugador2", new Raqueta(600, 250, 50, 150));    
         this.mesa=mesa;
     }
     
-    public void muevaJugador(String name,Dir dir) throws Exception{
+    public synchronized void muevaJugador(String name,Dir dir) throws Exception{
         if(jugadores.get(name)==null){
             throw new Exception("Jugador no encontrado");
         }else{
@@ -36,14 +41,26 @@ public class JugadoresController {
         }
     }
 
-    public List<String> ubicacionJugadores() {
-        List<String> ans=new ArrayList<>();
+    public synchronized List<Point> ubicacionJugadores() {
+        List<Point> ans=new ArrayList<>();
         for (Raqueta ra: jugadores.values()){
-            ans.add(ra.toString());
+            ans.add(ra.ubicacion());
         }
         return ans;
     }
     
+    public synchronized Collection<Raqueta> getRaquetas(){
+        return  jugadores.values();
+    }
+
+    public synchronized String getJugadorPorRaqueta(Raqueta r) {
+        for(String key:jugadores.keySet()){
+            if(jugadores.get(key)==r){
+                return key;
+            }
+        }
+        return null;
+    }
     
     
 }

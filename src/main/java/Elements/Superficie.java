@@ -32,7 +32,7 @@ public abstract class Superficie {
         this.h = h;        
     }    
 
-    public Map<Dir, Rectangle> getColisiones(){
+    public synchronized Map<Dir, Rectangle> getColisiones(){
         Map<Dir,Rectangle> colisiones=new HashMap<Dir, Rectangle>();
         colisiones.put(Dir.UP, new Rectangle(x+1, y, w-1, 1));
         colisiones.put(Dir.DOWN, new Rectangle(x+1, y+h, w-1, 1));
@@ -41,36 +41,40 @@ public abstract class Superficie {
         return colisiones;
     }    
   
-    public int getWidth(){
+    public synchronized int getWidth(){
         return w;
     }
-    public int getHeight(){
+    public synchronized int getHeight(){
         return h;
     }
-    public int getX(){
+    public synchronized int getX(){
         return x;
     }
-    public int getY(){
+    public synchronized int getY(){
         return y;
     }
-    public int getCenterX(){
+    public synchronized int getCenterX(){
         return x+w/2;
     }
-    public int getCenterY(){
+    public synchronized int getCenterY(){
         return y+h/2;
     }
 
-    public void setX(int x) {
+    public synchronized void setX(int x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public synchronized void setY(int y) {
         this.y = y;
+    }
+    
+    public synchronized Point ubicacion(){
+        return new Point(x,y);
     }
     
        
     @Override
-    public String toString(){        
+    public synchronized String toString(){        
         Point A=new Point(x, y);
         Point B=new Point(x+w,y);
         Point C=new Point(x+w,y+h);

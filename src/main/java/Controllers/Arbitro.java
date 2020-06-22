@@ -9,9 +9,8 @@ import Controllers.ServiciosFisica.Dir;
 import Elements.Pelota;
 import Elements.Mesa;
 import Elements.Raqueta;
-import java.util.HashMap;
+import java.awt.Point;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,39 +19,31 @@ import java.util.logging.Logger;
  *
  * @author J. Eduardo Arias
  */
-public class Arbitro {   
+public class Arbitro implements Runnable{   
     private PelotaController pc;
     private JugadoresController jc;
+    private boolean bandera=true;
     
-    
-    
-    public Arbitro(Dir h,Dir v) {
-        try {
-            Mesa mesa=new Mesa(700,500);
+       
+    public void IniciePartida(Dir h,Dir v) throws Exception{               
+            Mesa mesa=new Mesa(700,500);     
             Pelota pelota=new Pelota(50, 50, mesa);
-            Map<String,Raqueta> js=new HashMap<String,Raqueta >();
-            js.put("jugador1", new Raqueta(150, 50, 50, 150));
-            js.put("jugador2", new Raqueta(600, 250, 50, 150));
             pelota.setDir(h);     
-            pelota.setDir(v);
-            jc=new JugadoresController(js,mesa);
-            pc=new PelotaController(mesa, pelota,js.values()); 
-         
-        } catch (Exception ex) {
-            Logger.getLogger(Arbitro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }   
+            pelota.setDir(v);    
+            jc=new JugadoresController(mesa);
+            pc=new PelotaController(this,mesa, pelota,jc.getRaquetas()); 
+    }
     
     
     public void continuar(){
         pc.MuevaPelota();
     }   
     
-    public String ubicacionPelota(){
+    public Point ubicacionPelota(){
         return pc.ubicacionPelota();
     }
     
-    public List<String> ubicacionJugadores(){
+    public List<Point> ubicacionJugadores(){
         return jc.ubicacionJugadores();
     }
     
@@ -66,6 +57,27 @@ public class Arbitro {
         } catch (Exception ex) {
             Logger.getLogger(Arbitro.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void notificarReboteEnJugador(Raqueta r) {
+        String name=jc.getJugadorPorRaqueta(r);
+        System.out.println("Ha respondido : "+name);
+    }
+
+    @Override
+    public void run() {
+        while(bandera){
+            try {
+                Thread.sleep(10);
+                continuar();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Arbitro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void stop(){
+        bandera=false;
     }
   
     

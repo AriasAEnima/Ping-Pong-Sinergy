@@ -48,13 +48,14 @@ public class ServiciosFisica {
        return true;
     }
     
-    public static Collection<Dir> nextDirPelota(Mesa mesa,Pelota pelota,Collection<Raqueta> jugadores){ 
+    public static Collection<Dir> nextDirPelota(Arbitro ar,Mesa mesa,Pelota pelota,Collection<Raqueta> jugadores){ 
         Map<Dir,Rectangle> ladospelota=pelota.getColisiones();
         Collection<Dir> ans=swapDirPelota(ladospelota,mesa.getColisiones());
         if(ans.isEmpty()){           
             for (Raqueta r: jugadores){
                 ans= swapDirPelota(ladospelota,r.getColisiones());
-                if(!ans.isEmpty()){                   
+                if(!ans.isEmpty()){      
+                    ar.notificarReboteEnJugador(r);
                     return ans;
                 }
             }        
@@ -99,41 +100,5 @@ public class ServiciosFisica {
     }
     
         
-//    public Pelota.Dir ColisionMovible(Raqueta player){              
-//       if( player.getX()<= this.getXright() &&
-//                player.getXright() >= this.getX() &&
-//                player.getY() <= this.getYdown() &&
-//                player.getYdown() >= this.getY()){
-//           if (Math.abs(player.getX()-this.getX())<Math.abs(player.getX()-this.getY())){
-//               return this.vertical==Pelota.Dir.UP?Pelota.Dir.DOWN:Pelota.Dir.UP;
-//           }else{
-//               return this.horizontal==Pelota.Dir.LEFT?Pelota.Dir.RIGTH:Pelota.Dir.LEFT;
-//           }
-//       }else{
-//              return null;        
-//       }
-//    
-//    }
-//    
-//    public Pelota.Dir ColisionMesa(Mesa mesa){
-//       if (this.getX()<=mesa.getX()){
-//           return Pelota.Dir.RIGTH;
-//       }else if(this.getXright()>=mesa.getXright()){
-//           return Pelota.Dir.LEFT;
-//       }else if(this.getY()<= mesa.getY()){
-//           return Pelota.Dir.DOWN;
-//       }else if(this.getYdown()>=mesa.getYdown()){
-//           return Pelota.Dir.UP;
-//       }else{
-//           return null;
-//       }
-//    } 
-//    
-//    public Pelota.Dir nuevaDireccion(Pelota pel,List<Superficies> superficies){
-//                
-//    }
-    
-//    public void actualizarFisica(){
-//        actualizarAreasdeColision();      
-//    }
+
 }
