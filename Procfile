@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* WebApp.WebStartApp
+web: java -Dserver.port=$PORT -jar target/Ping-Pong-Synergy-1.0-SNAPSHOT.jar
