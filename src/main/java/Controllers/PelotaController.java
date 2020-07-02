@@ -32,18 +32,18 @@ public class PelotaController {
             
     
     public synchronized void MuevaPelota(){
+         pelota.move();
         Collection<Dir> newDirs=ServiciosFisica.nextDirPelota(ar,mesa, pelota,jugadores);
         if(newDirs!=null){
-            System.out.println(pelota.ubicacion());
-            System.out.println(newDirs);
+            //System.out.println(pelota.ubicacion());
+            //System.out.println(newDirs);
             for(Dir newDir:newDirs){
                 pelota.setDir(newDir);
             }            
             reboto=true;
         }else{
             reboto=false;
-        }
-        pelota.move();
+        }       
     }
 
     public synchronized boolean getReboto(){

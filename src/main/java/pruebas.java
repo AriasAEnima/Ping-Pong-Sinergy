@@ -20,7 +20,7 @@ public class pruebas {
     public static void main(String[] args){      
         try {   
             Arbitro a=new Arbitro();
-            a.IniciePartida(Dir.UP, Dir.LEFT);
+            a.PreparePartida(Dir.UP, Dir.LEFT);
             print("Jugadores");
             print(a.ubicacionJugadores());
             print("Pelota");

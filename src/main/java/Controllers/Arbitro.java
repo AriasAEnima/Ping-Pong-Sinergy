@@ -25,12 +25,21 @@ public class Arbitro implements Runnable{
     private boolean bandera=true;
     
        
-    public void IniciePartida(Dir h,Dir v) throws Exception{               
+    public void PreparePartida(Dir h,Dir v) throws Exception{               
             Mesa mesa=new Mesa(700,500);     
             Pelota pelota=new Pelota(50, 50, mesa);
             pelota.setDir(h);     
             pelota.setDir(v);    
             jc=new JugadoresController(mesa);
+            pc=new PelotaController(this,mesa, pelota,jc.getRaquetas()); 
+    }
+    
+    public void PreparePartida(Dir h,Dir v,int njug) throws Exception{               
+            Mesa mesa=new Mesa(700,500);     
+            Pelota pelota=new Pelota(50, 50, mesa);
+            pelota.setDir(h);     
+            pelota.setDir(v);    
+            jc=new JugadoresController(mesa,njug);
             pc=new PelotaController(this,mesa, pelota,jc.getRaquetas()); 
     }
     

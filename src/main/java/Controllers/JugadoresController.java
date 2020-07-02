@@ -30,6 +30,14 @@ public class JugadoresController {
         this.mesa=mesa;
     }
     
+    public JugadoresController(Mesa mesa,int njug) throws Exception {
+        jugadores=new HashMap<String,Raqueta >();
+        for(int i=0; i<njug; i++){
+             jugadores.put("jugador1", new Raqueta(150+300*(i%2), 50 + 170*(i/2), 50, 150));
+        }     
+        this.mesa=mesa;
+    }
+    
     public synchronized void muevaJugador(String name,Dir dir) throws Exception{
         if(jugadores.get(name)==null){
             throw new Exception("Jugador no encontrado");
