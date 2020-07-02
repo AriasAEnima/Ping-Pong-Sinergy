@@ -59,6 +59,26 @@ Esto se repetirá hasta que un equipo se equivoque en el orden o se logre poner 
 
 Esto implica que además de lograr golpear el disco/pelota se debe coordinar con el compañero para su turno de golpear y para que este no le estorbe a la hora de hacerlo.
 
+# Diagrama General
+
+![Diagrama](generalmedia/diagrama.png)
+
+# Progreso:
+
+## Diseño Actual (Logica)
+**Los métodos mostrados ya están implementados**
+
+![modelo](generalmedia/modelo.png)
+
+
+## Enlace a Trello
+
+## [Link](https://trello.com/b/o1qCHEHY/ping-pong-sinergy)
+
+## Heroku :
+
+## [Heroku](https://ping-pong-synergy.herokuapp.com/)
+
 ## Historias de Usuario
 
 #### 0) Como Usuario Quiero Registrarme.
@@ -110,12 +130,8 @@ Esto implica que además de lograr golpear el disco/pelota se debe coordinar con
   * Se muestra la permutación del orden y demás información del juego en dobles.
 * Cumple con las reglas de juego determinadas de "dobles".
 
-# Progreso:
 
-## Diseño Actual
-**Los métodos mostrados ya están implementados**
 
-![modelo](generalmedia/modelo.png)
 
 ## Licencia
 
