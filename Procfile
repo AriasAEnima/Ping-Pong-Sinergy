@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* WebApp.StartApp
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* WebApp.WebStartApp
