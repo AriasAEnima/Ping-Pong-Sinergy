@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Elements;
+package edu.escuelaing.arsw.Elements;
 
-import Controllers.ServiciosFisica;
+import edu.escuelaing.arsw.Controllers.ServiciosFisica;
 
 /**
  *

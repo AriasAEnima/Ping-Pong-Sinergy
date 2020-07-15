@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Ping Pong Synergy Login</title>
+  
+   
+
+        <!--<link rel="stylesheet" type="text/css" href="css/login.css">-->
+        <link rel="stylesheet" th:href="@{/css/login.css}" />        
+        <!--<link rel="icon" type="image/png" href="imagenes/favicon.png"/>-->
+        <link rel="icon" type="image/png" th:href="@{/imagenes/favicon.png}" />
+
+        
+    </head>
+    <body>
+        <h1> Ping Pong Synergy </h1>
+     
+     
+           <h2> Login </h2>
+ 
+ 
+           
+        <div th:if="${param.error}">
+            Invalid username and password.
+         
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Sign In"/></div>
+        </form>
+           
+           
+        <!-- Load our React component. -->
+    
+    
+    </body>
+</html>

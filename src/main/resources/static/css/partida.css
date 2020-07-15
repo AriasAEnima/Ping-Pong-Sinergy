@@ -4,15 +4,15 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 30/06/2020, 05:06:56 PM
+    Created on : 14/07/2020, 07:23:47 PM
     Author     : J. Eduardo Arias
 */
-
 @import url('https://fonts.googleapis.com/css2?family=Graduate&display=swap');
 html{
         background-image: url('../imagenes/fondo.jpg') ;    
         background-size:   100%;        
 }
+
 
 body * {
      font-size: 25px;
@@ -20,15 +20,20 @@ body * {
 }
 
 h1{
-    margin-top: 10vw;
-    font-size: 45px;
+ 
+    font-size: 35px;
 }
-h2{
-    margin-top: 70px;   
-}
+
 body *{
     text-align: center;
     font-family: 'Graduate', cursive;
+}
+
+#container{
+    border: 1px solid red;
+    width: 803px;
+    height: 503px;
+    margin: auto;
 }
 
 input {

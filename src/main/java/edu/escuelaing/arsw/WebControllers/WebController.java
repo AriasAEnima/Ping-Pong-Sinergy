@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package WebApp;
+package edu.escuelaing.arsw.WebControllers;
 
 /**
  *
@@ -25,11 +25,6 @@ public class WebController {
                 + java.time.LocalTime.now()
                 + ". " + "The server is Runnig!\"}";
     }
-    
-    @PostMapping("/login")
-    public  String login(@RequestParam(value = "user") String user,@RequestParam(value = "password") String password){
-        System.out.println("{\"user\":\""+ user+"\" , \"password\": \""+ password  +"\"  }");
-        return "{\"user\":\""+ user+"\"}";
-    }
+
     
 }

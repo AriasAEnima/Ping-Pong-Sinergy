@@ -1,6 +1,6 @@
 
-import Controllers.Arbitro;
-import Controllers.ServiciosFisica.Dir;
+import edu.escuelaing.arsw.Controllers.Arbitro;
+import edu.escuelaing.arsw.Controllers.ServiciosFisica.Dir;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

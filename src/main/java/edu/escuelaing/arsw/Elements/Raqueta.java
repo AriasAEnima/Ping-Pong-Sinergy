@@ -3,56 +3,50 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Elements;
+package edu.escuelaing.arsw.Elements;
 
-import Controllers.ServiciosFisica.Dir;
+import edu.escuelaing.arsw.Controllers.ServiciosFisica;
 
 /**
  *
  * @author J. Eduardo Arias
  */
-public class Pelota extends Superficie implements Movible{
-    
+public class Raqueta extends Superficie implements Movible{
     
     private int dx;
     private int dy;
     private static final int MOVECONST=1;
-    
-   
-    public Pelota(int x, int y, int w, int h) throws Exception {   
+
+    public Raqueta(int x, int y, int w, int h) throws Exception {
         super(x, y, w, h);
         dx=0;
         dy=0;
     }
-    
-    public Pelota(int w,int h,Superficie s) throws Exception{
-        this(s.getCenterX()-w/2,s.getCenterY()-h/2,w,h);
-    }
-    
-    public synchronized void move(){   
-        move(dx,dy);
-    }    
-    
+
     @Override
-    public synchronized void  move(int difx,int dify){
+    public synchronized void move(int difx, int dify) {
         setX(getX()+difx);
-        setY(getY()+dify);             
-    }    
+        setY(getY()+dify);  
+    }
 
-
-    public synchronized void setDir(Dir dir) {      
-        switch (dir) {
+    @Override
+    public synchronized void setDir(ServiciosFisica.Dir dir) {
+       switch (dir) {
             case LEFT:
-                dx=-MOVECONST;             
+                dx=-MOVECONST; 
+                dy=0;
                 break;
             case RIGTH:
-                dx=MOVECONST;             
+                dx=MOVECONST;   
+                dy=0;
                 break;                 
             case UP:
-                dy=-MOVECONST;               
+                dy=-MOVECONST;      
+                dx=0;
                 break;
             case DOWN:
-                dy=MOVECONST;              
+                dy=MOVECONST;     
+                dx=0;
                 break;
             case NONEHORIZONTAL:
                 dx=0;               
@@ -61,7 +55,11 @@ public class Pelota extends Superficie implements Movible{
                 dy=0;                
                 break;             
         }
-    }  
+    }
 
+    @Override
+    public synchronized void move() {
+         move(dx,dy);
+    }
     
 }

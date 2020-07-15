@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package edu.escuelaing.arsw.Controllers;
 
-import Controllers.ServiciosFisica.Dir;
-import Elements.Mesa;
-import Elements.Raqueta;
+import edu.escuelaing.arsw.Controllers.ServiciosFisica.Dir;
+import edu.escuelaing.arsw.Elements.Mesa;
+import edu.escuelaing.arsw.Elements.Raqueta;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;

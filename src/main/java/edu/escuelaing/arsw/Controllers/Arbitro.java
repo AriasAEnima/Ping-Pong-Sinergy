@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package edu.escuelaing.arsw.Controllers;
 
-import Controllers.ServiciosFisica.Dir;
-import Elements.Pelota;
-import Elements.Mesa;
-import Elements.Raqueta;
+import edu.escuelaing.arsw.Controllers.ServiciosFisica.Dir;
+import edu.escuelaing.arsw.Elements.Pelota;
+import edu.escuelaing.arsw.Elements.Mesa;
+import edu.escuelaing.arsw.Elements.Raqueta;
 import java.awt.Point;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,6 +24,7 @@ public class Arbitro implements Runnable{
     private JugadoresController jc;
     private boolean bandera=true;
     
+
        
     public void PreparePartida(Dir h,Dir v) throws Exception{               
             Mesa mesa=new Mesa(700,500);     
@@ -77,7 +78,7 @@ public class Arbitro implements Runnable{
     public void run() {
         while(bandera){
             try {
-                Thread.sleep(10);
+                Thread.sleep(2000);
                 continuar();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Arbitro.class.getName()).log(Level.SEVERE, null, ex);

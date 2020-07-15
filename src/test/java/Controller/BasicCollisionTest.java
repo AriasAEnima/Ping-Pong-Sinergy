@@ -5,10 +5,10 @@
  */
 package Controller;
 
-import Controllers.Arbitro;
-import Controllers.JugadoresController;
-import Controllers.ServiciosFisica;
-import Elements.Mesa;
+import edu.escuelaing.arsw.Controllers.Arbitro;
+import edu.escuelaing.arsw.Controllers.JugadoresController;
+import edu.escuelaing.arsw.Controllers.ServiciosFisica;
+import edu.escuelaing.arsw.Elements.Mesa;
 
 import java.awt.Point;
 import java.util.ArrayList;
