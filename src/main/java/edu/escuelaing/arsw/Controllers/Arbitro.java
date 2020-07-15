@@ -14,54 +14,59 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author J. Eduardo Arias
  */
-public class Arbitro implements Runnable{   
+public class Arbitro implements Runnable, Observer {
+
     private PelotaController pc;
     private JugadoresController jc;
-    private boolean bandera=true;
-    
+    private boolean bandera = true;
+    private Observer ob;
 
-       
-    public void PreparePartida(Dir h,Dir v) throws Exception{               
-            Mesa mesa=new Mesa(700,500);     
-            Pelota pelota=new Pelota(50, 50, mesa);
-            pelota.setDir(h);     
-            pelota.setDir(v);    
-            jc=new JugadoresController(mesa);
-            pc=new PelotaController(this,mesa, pelota,jc.getRaquetas()); 
+    public Arbitro(){}
+    
+    public Arbitro(Observer ob) {
+        this.ob = ob;
     }
-    
-    public void PreparePartida(Dir h,Dir v,int njug) throws Exception{               
-            Mesa mesa=new Mesa(700,500);     
-            Pelota pelota=new Pelota(50, 50, mesa);
-            pelota.setDir(h);     
-            pelota.setDir(v);    
-            jc=new JugadoresController(mesa,njug);
-            pc=new PelotaController(this,mesa, pelota,jc.getRaquetas()); 
+
+    public void PreparePartida(Dir h, Dir v) throws Exception {
+        Mesa mesa = new Mesa(700, 500);
+        Pelota pelota = new Pelota(50, 50, mesa);
+        pelota.setDir(h);
+        pelota.setDir(v);
+        jc = new JugadoresController(mesa,this);
+        pc = new PelotaController(this, mesa, pelota, jc.getRaquetas());
     }
-    
-    
-    public void continuar(){
+
+    public void PreparePartida(Dir h, Dir v, int njug) throws Exception {
+        Mesa mesa = new Mesa(700, 500);
+        Pelota pelota = new Pelota(50, 50, mesa);
+        pelota.setDir(h);
+        pelota.setDir(v);
+        jc = new JugadoresController(mesa, njug);
+        pc = new PelotaController(this, mesa, pelota, jc.getRaquetas());
+    }
+
+    public void continuar() {
         pc.MuevaPelota();
-    }   
-    
-    public Point ubicacionPelota(){
+        notifyChangue();
+    }
+
+    public Point ubicacionPelota() {
         return pc.ubicacionPelota();
     }
-    
-    public List<Point> ubicacionJugadores(){
+
+    public List<Point> ubicacionJugadores() {
         return jc.ubicacionJugadores();
     }
-    
-    public boolean huboContactoPelota(){
+
+    public boolean huboContactoPelota() {
         return pc.getReboto();
     }
-    
-    public void MoverJugador(String name,Dir dir){
+
+    public void MoverJugador(String name, Dir dir) {
         try {
             jc.muevaJugador(name, dir);
         } catch (Exception ex) {
@@ -70,25 +75,32 @@ public class Arbitro implements Runnable{
     }
 
     public void notificarReboteEnJugador(Raqueta r) {
-        String name=jc.getJugadorPorRaqueta(r);
-        System.out.println("Ha respondido : "+name);
+        String name = jc.getJugadorPorRaqueta(r);
+        System.out.println("Ha respondido : " + name);
     }
 
     @Override
     public void run() {
-        while(bandera){
+        while (bandera) {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(500);
                 continuar();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Arbitro.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-    public void stop(){
-        bandera=false;
+
+    public void stop() {
+        bandera = false;
     }
-  
-    
+
+    @Override
+    public void notifyChangue() {
+        if (ob != null) {
+            ob.notifyChangue();
+        }
+
+    }
+
 }

@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 import org.junit.Test;
 
 /**
@@ -33,7 +34,7 @@ public class BasicCollisionTest {
         // La pelota es de 50 x 50 inicia en el centro.
       try {   
             Arbitro a=new Arbitro();
-            a.PreparePartida(ServiciosFisica.Dir.UP, ServiciosFisica.Dir.LEFT,0); // 0 jugadores Va hacia arriba a la izquierda
+            a.PreparePartida(ServiciosFisica.Dir.UP, ServiciosFisica.Dir.LEFT); // 0 jugadores Va hacia arriba a la izquierda
             a.continuar(); // Mueve la pelota             
             List<Point> dondeReboto = new ArrayList<>();
             for(int i=0 ; i<500;i++){                  
@@ -49,6 +50,7 @@ public class BasicCollisionTest {
             assertTrue(primero.x==100 && primero.y==0 && segundo.x==0 && segundo.y==100);                 
             
         } catch (Exception ex) {
+            fail("NO paso");
             Logger.getLogger(BasicCollisionTest.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
@@ -59,7 +61,7 @@ public class BasicCollisionTest {
         // La pelota es de 50 x 50 inicia en el centro.
       try {   
             Arbitro a=new Arbitro();
-            a.PreparePartida(ServiciosFisica.Dir.DOWN, ServiciosFisica.Dir.RIGTH,0); // 0 jugadores Va hacia abajo a la derecha
+            a.PreparePartida(ServiciosFisica.Dir.DOWN, ServiciosFisica.Dir.RIGTH); // 0 jugadores Va hacia abajo a la derecha
             a.continuar(); // Mueve la pelota             
             List<Point> dondeReboto = new ArrayList<>();
             for(int i=0 ; i<500;i++){                  
@@ -75,6 +77,7 @@ public class BasicCollisionTest {
             assertTrue(primero.x==700-100-50 && primero.y==500-50 && segundo.x==700-50 && segundo.y==500-100-50);                 
             
         } catch (Exception ex) {
+            fail("NO paso");
             Logger.getLogger(BasicCollisionTest.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
@@ -103,6 +106,7 @@ public class BasicCollisionTest {
        
             
         } catch (Exception ex) {
+            fail("NO paso");
             Logger.getLogger(BasicCollisionTest.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
@@ -111,8 +115,8 @@ public class BasicCollisionTest {
     public void PelotaChocaConJugador(){
         try {
             Arbitro a=new Arbitro();                
-            a.PreparePartida(ServiciosFisica.Dir.UP, ServiciosFisica.Dir.LEFT);
-              // jugadores.put("jugador1", new Raqueta(150, 50, 50, 150));     jugadores.put("jugador2", new Raqueta(600, 250, 50, 150));    
+            a.PreparePartida(ServiciosFisica.Dir.UP, ServiciosFisica.Dir.LEFT,2);
+             // jugadores.put("jugador1", new Raqueta(150, 50, 50, 150));     jugadores.put("jugador2", new Raqueta(450, 50, 50, 150));    
   
            List<Point> dondeReboto = new ArrayList<>();
             for(int i=0 ; i<500;i++){                  
@@ -120,18 +124,18 @@ public class BasicCollisionTest {
                         dondeReboto.add(a.ubicacionPelota());
                     }         
                     a.continuar();      
-            }      
-            System.out.println(dondeReboto);
+            }               
             Point primero = dondeReboto.get(0);
             Point segundo = dondeReboto.get(1);
             Point tercero = dondeReboto.get(2);
             assertTrue(primero.x==200 && primero.y==100);
             assertTrue(segundo.x==300 && segundo.y==0);
-            assertTrue(tercero.x==550 && tercero.y==250);
+            assertTrue(tercero.x==400 && tercero.y==100);
             
      
         } catch (Exception ex) {
             Logger.getLogger(BasicCollisionTest.class.getName()).log(Level.SEVERE, null, ex);
+            fail("NO paso");
         }
     }
 }

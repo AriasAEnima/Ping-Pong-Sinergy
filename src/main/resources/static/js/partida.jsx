@@ -58,7 +58,9 @@ class PartidaCanvas extends React.Component {
                     var obj = JSON.parse(msg);
                     console.log(obj.pelota.toString()+" Esto es parse");                
                     this.drawPelota(obj.pelota[0].x, obj.pelota[0].y);
-                    this.drawPoint(20,20);
+                    this.drawJugador(obj.jugadores[0].x, obj.jugadores[0].y);
+                    this.drawJugador(obj.jugadores[1].x, obj.jugadores[1].y);
+                    // this.drawPoint(20,20);
                 });
                 
         this.myp5 = null;
@@ -67,7 +69,7 @@ class PartidaCanvas extends React.Component {
         this.sketch = function (p) {
 
             p.setup = function () {
-                p.createCanvas(800, 500);
+                p.createCanvas(700, 500);
             };
 
 
@@ -85,8 +87,11 @@ class PartidaCanvas extends React.Component {
     }
     
     drawPelota(x,y){
-        this.myp5.rect(x, y, 50, 50);
-        
+        this.myp5.rect(x, y, 50, 50);        
+    }
+    
+    drawJugador(x,y){
+        this.myp5.rect(x, y, 50, 150);          
     }
     
     drawPoint(x, y) {

@@ -22,18 +22,25 @@ import java.util.Map;
 public class JugadoresController {
     private final Map<String,Raqueta> jugadores;
     private final Mesa mesa;
+    private Observer ob;
+    
+    public JugadoresController (Mesa mesa, Observer ob) throws Exception{
+        this(mesa);
+        this.ob=ob;
+    }
+    
 
     public JugadoresController(Mesa mesa) throws Exception {
-        jugadores=new HashMap<String,Raqueta >();
-        jugadores.put("jugador1", new Raqueta(150, 50, 50, 150));
-        jugadores.put("jugador2", new Raqueta(600, 250, 50, 150));    
+        jugadores=new HashMap< >();
+//        jugadores.put("jugador1", new Raqueta(150, 50, 50, 150));
+//        jugadores.put("jugador2", new Raqueta(600, 250, 50, 150));    
         this.mesa=mesa;
     }
     
     public JugadoresController(Mesa mesa,int njug) throws Exception {
-        jugadores=new HashMap<String,Raqueta >();
+        jugadores=new HashMap< >();
         for(int i=0; i<njug; i++){
-             jugadores.put("jugador1", new Raqueta(150+300*(i%2), 50 + 170*(i/2), 50, 150));
+             jugadores.put("jugador"+(i+1), new Raqueta(150+300*(i%2), 50 + 170*(i/2), 50, 150));
         }     
         this.mesa=mesa;
     }
@@ -45,6 +52,9 @@ public class JugadoresController {
             if(ServiciosFisica.puedeMoverJugador(mesa, jugadores.get(name), dir, jugadores.values())){
                 jugadores.get(name).setDir(dir);
                 jugadores.get(name).move();
+                if(ob!=null){
+                    ob.notifyChangue();
+                }
             }        
         }
     }

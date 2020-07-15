@@ -10,6 +10,7 @@ package edu.escuelaing.arsw.endpoints;
  * @author J. Eduardo Arias
  */
 import edu.escuelaing.arsw.Controllers.Arbitro;
+import edu.escuelaing.arsw.Controllers.Observer;
 import edu.escuelaing.arsw.Controllers.ServiciosFisica;
 import java.awt.Point;
 import java.io.IOException;
@@ -29,7 +30,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ServerEndpoint("/partidaService")
-public class PartidaEndPoint {
+public class PartidaEndPoint implements Observer{
 
 
     private static final Logger logger = Logger.getLogger(PartidaEndPoint.class.getName());
@@ -38,15 +39,14 @@ public class PartidaEndPoint {
 
     Session ownSession = null;
     Arbitro ar=null;
+    Thread h=null;
 
     /* Call this method to send a message to all clients */
     public void send(String msg) {
         try {
             /* Send updates to all open WebSocket sessions */
-            for (Session session : queue) {
-                if (!session.equals(this.ownSession)) {
-                    session.getBasicRemote().sendText(msg);
-                }
+            for (Session session : queue) {               
+                session.getBasicRemote().sendText(msg);           
                 logger.log(Level.INFO, "Sent: {0}", msg);
             }
         } catch (IOException e) {
@@ -68,11 +68,17 @@ public class PartidaEndPoint {
         logger.log(Level.INFO, "Connection opened.");
         try {
         
-            ar=new Arbitro();
-            ar.PreparePartida(ServiciosFisica.Dir.UP, ServiciosFisica.Dir.RIGTH);
+            ar=new Arbitro(this);
+            ar.PreparePartida(ServiciosFisica.Dir.UP, ServiciosFisica.Dir.RIGTH,2);
             ownSession.getBasicRemote().sendText("Connection established.");
             Point pelotau=ar.ubicacionPelota();
-            ownSession.getBasicRemote().sendText("{ \"pelota\" : [ {\"x\": "+ pelotau.x+", \"y\":"+pelotau.y+"}]}");
+            ownSession.getBasicRemote().sendText("{ \"pelota\" : [ {\"x\": "+ pelotau.x+", \"y\":"+pelotau.y+"}] ,"
+                    + " \"jugadores\": ["
+                    + "{\"name\": \"jugador1\", \"x\": "+ar.ubicacionJugadores().get(0).x+", \"y\": "+ ar.ubicacionJugadores().get(0).y+ "},"
+                    + "{\"name\": \"jugador2\", \"x\": "+ar.ubicacionJugadores().get(1).x+", \"y\": "+ ar.ubicacionJugadores().get(1).y+ "}]"
+                    + "}");
+            h=new Thread(ar);
+            h.start();
         } catch (IOException ex) {
             logger.log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -96,5 +102,15 @@ public class PartidaEndPoint {
         queue.remove(session);
         logger.log(Level.INFO, t.toString());
         logger.log(Level.INFO, "Connection error.");
+    }
+
+    @Override
+    public void notifyChangue() {
+        Point pelotau=ar.ubicacionPelota();       
+        send("{ \"pelota\" : [ {\"x\": "+ pelotau.x+", \"y\":"+pelotau.y+"}] ,"
+                    + " \"jugadores\": ["
+                    + "{\"name\": \"jugador1\", \"x\": "+ar.ubicacionJugadores().get(0).x+", \"y\": "+ ar.ubicacionJugadores().get(0).y+ "},"
+                    + "{\"name\": \"jugador2\", \"x\": "+ar.ubicacionJugadores().get(1).x+", \"y\": "+ ar.ubicacionJugadores().get(1).y+ "}]"
+                    + "}");
     }
 }
