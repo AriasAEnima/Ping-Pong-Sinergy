@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
+import org.json.JSONObject;
 
 /**
  *
@@ -81,5 +82,8 @@ public abstract class Superficie {
         Point D=new Point(x,y+h);       
         return "Superficie = A:"+A+", B: "+B+" C:"+C+" D:"+D;
     }
+    
+    public abstract JSONObject toJSON();
+
     
 }

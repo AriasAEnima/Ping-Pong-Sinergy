@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.json.JSONObject;
 
 /**
  *
@@ -40,7 +41,7 @@ public class JugadoresController {
     public JugadoresController(Mesa mesa,int njug) throws Exception {
         jugadores=new HashMap< >();
         for(int i=0; i<njug; i++){
-             jugadores.put("jugador"+(i+1), new Raqueta(150+300*(i%2), 50 + 170*(i/2), 50, 150));
+             jugadores.put("jugador"+(i+1), new Raqueta("jugador"+(i+1),150+300*(i%2), 50 + 170*(i/2), 50, 150));
         }     
         this.mesa=mesa;
     }
@@ -64,7 +65,24 @@ public class JugadoresController {
         for (Raqueta ra: jugadores.values()){
             ans.add(ra.ubicacion());
         }
+        System.out.println(JugadorestoJSONString());
         return ans;
+    }
+    
+    public synchronized String JugadorestoJSONString() {
+        boolean primero=true;
+        String ans="\"jugadores\": [";
+        for (Raqueta r:jugadores.values()){
+            if(!primero){
+                ans+=",";               
+            }else{      
+                primero=false;
+            }
+            ans+=r.toJSON().toString();          
+        }      
+        ans+="]";
+        return ans;
+        
     }
     
     public synchronized Collection<Raqueta> getRaquetas(){

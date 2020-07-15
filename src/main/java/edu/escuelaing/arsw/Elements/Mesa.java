@@ -6,6 +6,7 @@
 package edu.escuelaing.arsw.Elements;
 
 import java.awt.Rectangle;
+import org.json.JSONObject;
 
 /**
  *
@@ -23,5 +24,12 @@ public class Mesa extends Superficie{
     }    
 
     
-    
+        
+    public synchronized JSONObject toJSON() {
+        JSONObject jo = new JSONObject();       
+        jo.put("x", this.getX());
+        jo.put("y", this.getY());
+        return jo;
+    }
+
 }

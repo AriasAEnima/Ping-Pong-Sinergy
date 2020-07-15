@@ -61,6 +61,15 @@ public class Arbitro implements Runnable, Observer {
     public List<Point> ubicacionJugadores() {
         return jc.ubicacionJugadores();
     }
+    
+    public synchronized String ElementosToJson() {
+        boolean primero=true;
+        String ans="{"+pc.PelotatoJSONString()+","+jc.JugadorestoJSONString()+"}";       
+    
+      
+        return ans;
+        
+    }
 
     public boolean huboContactoPelota() {
         return pc.getReboto();
@@ -73,6 +82,7 @@ public class Arbitro implements Runnable, Observer {
             Logger.getLogger(Arbitro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
     public void notificarReboteEnJugador(Raqueta r) {
         String name = jc.getJugadorPorRaqueta(r);

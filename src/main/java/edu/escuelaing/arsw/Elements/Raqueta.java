@@ -6,6 +6,7 @@
 package edu.escuelaing.arsw.Elements;
 
 import edu.escuelaing.arsw.Controllers.ServiciosFisica;
+import org.json.JSONObject;
 
 /**
  *
@@ -16,8 +17,9 @@ public class Raqueta extends Superficie implements Movible{
     private int dx;
     private int dy;
     private static final int MOVECONST=1;
+    private String nombrejugador;
 
-    public Raqueta(int x, int y, int w, int h) throws Exception {
+    public Raqueta(String nombrejugador,int x, int y, int w, int h) throws Exception {
         super(x, y, w, h);
         dx=0;
         dy=0;
@@ -60,6 +62,14 @@ public class Raqueta extends Superficie implements Movible{
     @Override
     public synchronized void move() {
          move(dx,dy);
+    }
+    
+    public synchronized JSONObject toJSON() {
+        JSONObject jo = new JSONObject();
+        jo.put("jugador", nombrejugador);
+        jo.put("x", this.getX());
+        jo.put("y", this.getY());
+        return jo;
     }
     
 }

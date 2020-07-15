@@ -54,4 +54,11 @@ public class PelotaController {
         return pelota.ubicacion();
     }
     
+    public synchronized String PelotatoJSONString() {     
+        String ans="\"pelota\": [";
+        ans+=pelota.toJSON().toString();
+        ans+="]";
+        return ans;
+        
+    }
 }

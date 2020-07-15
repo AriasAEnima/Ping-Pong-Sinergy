@@ -6,6 +6,7 @@
 package edu.escuelaing.arsw.Elements;
 
 import edu.escuelaing.arsw.Controllers.ServiciosFisica.Dir;
+import org.json.JSONObject;
 
 /**
  *
@@ -62,6 +63,13 @@ public class Pelota extends Superficie implements Movible{
                 break;             
         }
     }  
+    
+    public synchronized JSONObject toJSON() {
+        JSONObject jo = new JSONObject();       
+        jo.put("x", this.getX());
+        jo.put("y", this.getY());
+        return jo;
+    }
 
     
 }

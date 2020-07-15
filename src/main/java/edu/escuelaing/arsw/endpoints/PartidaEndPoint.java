@@ -12,7 +12,6 @@ package edu.escuelaing.arsw.endpoints;
 import edu.escuelaing.arsw.Controllers.Arbitro;
 import edu.escuelaing.arsw.Controllers.Observer;
 import edu.escuelaing.arsw.Controllers.ServiciosFisica;
-import java.awt.Point;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.Queue;
@@ -24,7 +23,6 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 
@@ -66,17 +64,11 @@ public class PartidaEndPoint implements Observer{
         queue.add(session);
         ownSession = session;
         logger.log(Level.INFO, "Connection opened.");
-        try {
-        
+        try {        
             ar=new Arbitro(this);
             ar.PreparePartida(ServiciosFisica.Dir.UP, ServiciosFisica.Dir.RIGTH,2);
-            ownSession.getBasicRemote().sendText("Connection established.");
-            Point pelotau=ar.ubicacionPelota();
-            ownSession.getBasicRemote().sendText("{ \"pelota\" : [ {\"x\": "+ pelotau.x+", \"y\":"+pelotau.y+"}] ,"
-                    + " \"jugadores\": ["
-                    + "{\"name\": \"jugador1\", \"x\": "+ar.ubicacionJugadores().get(0).x+", \"y\": "+ ar.ubicacionJugadores().get(0).y+ "},"
-                    + "{\"name\": \"jugador2\", \"x\": "+ar.ubicacionJugadores().get(1).x+", \"y\": "+ ar.ubicacionJugadores().get(1).y+ "}]"
-                    + "}");
+            ownSession.getBasicRemote().sendText("Connection established.");          
+            ownSession.getBasicRemote().sendText(ar.ElementosToJson());
             h=new Thread(ar);
             h.start();
         } catch (IOException ex) {
@@ -105,12 +97,7 @@ public class PartidaEndPoint implements Observer{
     }
 
     @Override
-    public void notifyChangue() {
-        Point pelotau=ar.ubicacionPelota();       
-        send("{ \"pelota\" : [ {\"x\": "+ pelotau.x+", \"y\":"+pelotau.y+"}] ,"
-                    + " \"jugadores\": ["
-                    + "{\"name\": \"jugador1\", \"x\": "+ar.ubicacionJugadores().get(0).x+", \"y\": "+ ar.ubicacionJugadores().get(0).y+ "},"
-                    + "{\"name\": \"jugador2\", \"x\": "+ar.ubicacionJugadores().get(1).x+", \"y\": "+ ar.ubicacionJugadores().get(1).y+ "}]"
-                    + "}");
+    public void notifyChangue() {         
+        send(ar.ElementosToJson());
     }
 }
