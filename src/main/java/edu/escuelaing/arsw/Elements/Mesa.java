@@ -5,7 +5,10 @@
  */
 package edu.escuelaing.arsw.Elements;
 
+import edu.escuelaing.arsw.Controllers.ServiciosFisica;
 import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
 import org.json.JSONObject;
 
 /**
@@ -31,5 +34,15 @@ public class Mesa extends Superficie{
         jo.put("y", this.getY());
         return jo;
     }
+    
+//    @Override
+//    public synchronized Map<ServiciosFisica.Dir, Rectangle> getColisiones(){
+//        Map<ServiciosFisica.Dir,Rectangle> colisiones=new HashMap<ServiciosFisica.Dir, Rectangle>();
+//        colisiones.put(ServiciosFisica.Dir.UP, new Rectangle(getX()+1, getY(), getWidth()-1, 10));
+//        colisiones.put(ServiciosFisica.Dir.DOWN, new Rectangle(getX()+1, getY()+getHeight(), getWidth()-1, 10));
+//        colisiones.put(ServiciosFisica.Dir.LEFT, new Rectangle(getX(), getY()+1, 10, getWidth()-1));
+//        colisiones.put(ServiciosFisica.Dir.RIGTH, new Rectangle(getX()+getWidth(), getY()+1, 10, getWidth()-1));
+//        return colisiones;
+//    } 
 
 }

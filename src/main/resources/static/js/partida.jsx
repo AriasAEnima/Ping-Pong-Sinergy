@@ -26,7 +26,7 @@ class WSBBChannel {
         console.log("In onOpen", evt);
     }
     onMessage(evt) {
-        console.log("In onMessage", evt);
+        //console.log("In onMessage", evt);
         // Este if permite que el primer mensaje del servidor no se tenga en cuenta.
         // El primer mensaje solo confirma que se estableció la conexión.
         // De ahí en adelante intercambiaremos solo puntos(x,y) con el servidor
@@ -38,8 +38,7 @@ class WSBBChannel {
         console.error("In onError", evt);
     }
 
-    send(x, y) {
-        let msg = '{ "x": ' + (x) + ', "y": ' + (y) + "}";
+    send(msg) {     
         console.log("sending: ", msg);
         this.wsocket.send(msg);
     }
@@ -54,9 +53,9 @@ class PartidaCanvas extends React.Component {
         this.comunicationWS =
                 new WSBBChannel(PartidaServiceURL(),
                         (msg) => {
-                    console.log("On func call back ", msg);
-                    var obj = JSON.parse(msg);
-                    console.log(obj.pelota.toString()+" Esto es parse");                
+                   // console.log("On func call back ", msg);
+                    var obj = JSON.parse(msg);   
+                    this.limpie();
                     this.drawPelota(obj.pelota[0].x, obj.pelota[0].y);
                     this.drawJugador(obj.jugadores[0].x, obj.jugadores[0].y);
                     this.drawJugador(obj.jugadores[1].x, obj.jugadores[1].y);
@@ -74,16 +73,31 @@ class PartidaCanvas extends React.Component {
 
 
             p.draw = function () {
-                if (p.mouseIsPressed === true) {
-                    p.fill(0, 0, 0);
-                    p.ellipse(p.mouseX, p.mouseY, 20, 20);
-                    wsreference.send(p.mouseX, p.mouseY);
-                }
-                if (p.mouseIsPressed === false) {
-                    p.fill(255, 255, 255);
-                }
+                    let message="";
+                    if (p.keyIsDown(65)) {
+                      message='{"jugador":"jugador1", "DIR":"LEFT" }';
+                      wsreference.send(message);
+                    }
+
+                    if (p.keyIsDown(68)) {
+                       message='{"jugador":"jugador1", "DIR":"RIGTH" }';
+                       wsreference.send(message);
+                    }
+
+                    if (p.keyIsDown(87)) {
+                       message='{"jugador":"jugador1", "DIR":"UP" }';
+                       wsreference.send(message);
+                    }
+
+                    if (p.keyIsDown(83)) {
+                       message='{"jugador":"jugador1", "DIR":"DOWN" }';
+                       wsreference.send(message);
+                    }
             };
         };
+    }
+    limpie(){
+        this.myp5.clear();        
     }
     
     drawPelota(x,y){

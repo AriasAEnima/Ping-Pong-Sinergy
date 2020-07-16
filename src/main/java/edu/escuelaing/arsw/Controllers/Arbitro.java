@@ -93,7 +93,7 @@ public class Arbitro implements Runnable, Observer {
     public void run() {
         while (bandera) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(8);
                 continuar();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Arbitro.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,7 +101,7 @@ public class Arbitro implements Runnable, Observer {
         }
     }
 
-    public void stop() {
+    public void pare() {
         bandera = false;
     }
 

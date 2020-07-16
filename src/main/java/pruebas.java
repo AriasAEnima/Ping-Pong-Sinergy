@@ -35,7 +35,7 @@ public class pruebas {
                 print(a.ubicacionJugadores());   
             }          
             System.out.println("Vo a parar");
-            a.stop();
+            a.pare();
             
         } catch (Exception ex) {
             Logger.getLogger(pruebas.class.getName()).log(Level.SEVERE, null, ex);

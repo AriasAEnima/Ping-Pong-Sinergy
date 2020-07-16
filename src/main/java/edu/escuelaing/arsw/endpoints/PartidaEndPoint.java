@@ -23,6 +23,7 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 
@@ -38,14 +39,14 @@ public class PartidaEndPoint implements Observer{
     Session ownSession = null;
     Arbitro ar=null;
     Thread h=null;
-
+    boolean enviar=true;
     /* Call this method to send a message to all clients */
-    public void send(String msg) {
+    public synchronized void send(String msg) {
         try {
             /* Send updates to all open WebSocket sessions */
             for (Session session : queue) {               
                 session.getBasicRemote().sendText(msg);           
-                logger.log(Level.INFO, "Sent: {0}", msg);
+                //logger.log(Level.INFO, "Sent: {0}", msg);
             }
         } catch (IOException e) {
             logger.log(Level.INFO, e.toString());
@@ -54,8 +55,16 @@ public class PartidaEndPoint implements Observer{
 
     @OnMessage
     public void processMove(String message, Session session) {
-        logger.log(Level.INFO, "Move received:" + message + ". From session: " + session);
-        this.send(message);
+        //logger.log(Level.INFO, "Move received:" + message + ". From session: " + session);
+        JSONObject json = new JSONObject(message);
+        if(json.has("jugador")){
+           String jugador=json.getString("jugador");
+           String dir=json.getString("DIR");
+           ServiciosFisica.Dir D= ServiciosFisica.Dir.valueOf(dir);
+           System.out.println(D);
+           ar.MoverJugador(jugador, D);
+        }
+        this.send(ar.ElementosToJson());
     }
 
     @OnOpen
@@ -82,9 +91,16 @@ public class PartidaEndPoint implements Observer{
 
     @OnClose
     public void closedConnection(Session session) {
-        /* Remove this connection from the queue */
-        queue.remove(session);
-        logger.log(Level.INFO, "Connection closed for session " + session);
+        enviar=false;
+        try {
+            /* Remove this connection from the queue */
+            ar.pare();
+            h.join();
+            queue.remove(session);
+            logger.log(Level.INFO, "Connection closed for session " + session);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PartidaEndPoint.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 
@@ -97,7 +113,9 @@ public class PartidaEndPoint implements Observer{
     }
 
     @Override
-    public void notifyChangue() {         
-        send(ar.ElementosToJson());
+    public void notifyChangue() { 
+        if(enviar){
+           send(ar.ElementosToJson());
+        }        
     }
 }

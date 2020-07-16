@@ -32,7 +32,7 @@ public class PelotaController {
             
     
     public synchronized void MuevaPelota(){
-         pelota.move();
+        pelota.move();
         Collection<Dir> newDirs=ServiciosFisica.nextDirPelota(ar,mesa, pelota,jugadores);
         if(newDirs!=null){
             //System.out.println(pelota.ubicacion());
