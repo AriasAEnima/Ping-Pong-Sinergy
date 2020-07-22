@@ -9,7 +9,6 @@ package edu.escuelaing.arsw.endpoints;
  *
  * @author J. Eduardo Arias
  */
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import edu.escuelaing.arsw.Controllers.Arbitro;
 import edu.escuelaing.arsw.Controllers.Observer;
 import edu.escuelaing.arsw.Controllers.ServiciosFisica;
@@ -123,7 +122,7 @@ public class PartidaEndPoint implements Observer{
                 }
                 ownSession.getBasicRemote().sendText("Connection established.");  
                 ownSession.getBasicRemote().sendText("{\"you\":\"espectador\"}"); 
-              
+                ownSession.getBasicRemote().sendText(ar.ElementosToJson());   
                 
             }        
         } catch (IOException ex) {
