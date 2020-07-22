@@ -37,11 +37,20 @@ Un ejemplo de lo que podría ser la mesa de juego:
 
 # Progreso:
 
-## Diseño Actual (Logica)
+## Diseño Actual (Logica de una Partida)
 **Los métodos mostrados ya están implementados**
 
 ![modelo](generalmedia/modelo.png)
 
+## Diseño Actual (Seguridad y Servicios Rest)
+**Los métodos mostrados ya están implementados**
+
+![modelo](generalmedia/seguridad.png)
+
+## Diseño Actual (Comunicacion por WebSockets)
+**Los métodos mostrados ya están implementados**
+
+![modelo](generalmedia/socket.png)
 
 ## Enlace a Trello
 

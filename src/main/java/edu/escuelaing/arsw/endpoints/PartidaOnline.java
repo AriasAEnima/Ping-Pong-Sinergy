@@ -58,8 +58,10 @@ public class PartidaOnline implements Observer{
             } else if (jugadores[1] == null) {
                 jugadores[1] = np;
                 player = "jugador2";  
-                h = new Thread(arbitro);
-                h.start();
+                if(h==null){
+                    h = new Thread(arbitro);
+                    h.start();
+                }               
             } else {
                 player="espectador";
                 espectadores.add(np);
