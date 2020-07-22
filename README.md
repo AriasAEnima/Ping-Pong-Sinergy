@@ -30,34 +30,6 @@ Un ejemplo de lo que podría ser la mesa de juego:
 
 ![Sencillos](generalmedia/tablerosencillo.png)
 
-# 2 vs 2
-
-Lo mas interesante de esta nueva version multijugador online es que nos permitirá jugar dobles con unas reglas **adicionales** particulares parecidas las de tenis de mesa en dobles:
-* Se debe mantener un orden para golpear la pelota. Por ejemplo Si existe un equipo A que inicia y otro B , y se debe mantener durante la definición del punto un orden A1-B1-A2-B2 o
-A2-B1-A1-B2 o A2-B2-A1-B1 etc ... ; solo será permitido utilizar paredes laterales entre este orden. (Golpear al Compañero de equipo también invalidara el punto).
-
-* El tamaño del "arco" es todo la zona del fondo.
-* Los jugadores de un mismo equipo no se pueden sobreponer.
-
-
-![Sencillos](generalmedia/tablerodobles.png)
-
-
-Un ejemplo grafico:
-
-Respuesta 1 | Respuesta 2
-----|----|
-![pasouno](generalmedia/pasouno.png) | ![pasodos](generalmedia/pasodos.png)
-Aqui Verde inicia. | Café decide responder atras para que Rosado tenga que cruzar el campo , Morado se ubica de tal forma de que no estorbe a la respuesta de Café. |
-
-Respuesta 3 | Respuesta 4
-----|----
-![pasotres](generalmedia/pasotres.png) | ![pasocuatro](generalmedia/pasocuatro.png)
-Rosa y Verde responden intercambiando de posición. | Morado se adelanta para que Verde tenga que cruzar el campo.
-
-Esto se repetirá hasta que un equipo se equivoque en el orden o se logre poner el disco en el arco.
-
-Esto implica que además de lograr golpear el disco/pelota se debe coordinar con el compañero para su turno de golpear y para que este no le estorbe a la hora de hacerlo.
 
 # Diagrama General
 
@@ -93,10 +65,9 @@ Esto implica que además de lograr golpear el disco/pelota se debe coordinar con
 ####  Criterios de aceptación:
 * Se muestra una pantalla de reglas de juego con ilustraciones útiles.
 
-#### 3) Como Usuario Quiero crear una cuenta, para guardar mis estadísticas y poder jugar.
+#### 3) Como Usuario Quiero guardar mis estadísticas.
 #### Criterios de aceptación:
-* Se pedirá un login o un registro
-* Se puede crear un usuario, con un nick y una contraseña.
+* Se puede relacionar las partidas con el usuario
 
 #### 4) Como Usuario Quiero entrar a una sala con un jugador. (1 vs 1)
 ####  Criterios de aceptación:
@@ -130,6 +101,36 @@ Esto implica que además de lograr golpear el disco/pelota se debe coordinar con
   * Se muestra la permutación del orden y demás información del juego en dobles.
 * Cumple con las reglas de juego determinadas de "dobles".
 
+# Por implementar
+
+# 2 vs 2
+
+Lo mas interesante de esta nueva version multijugador online es que nos permitirá jugar dobles con unas reglas **adicionales** particulares parecidas las de tenis de mesa en dobles:
+* Se debe mantener un orden para golpear la pelota. Por ejemplo Si existe un equipo A que inicia y otro B , y se debe mantener durante la definición del punto un orden A1-B1-A2-B2 o
+A2-B1-A1-B2 o A2-B2-A1-B1 etc ... ; solo será permitido utilizar paredes laterales entre este orden. (Golpear al Compañero de equipo también invalidara el punto).
+
+* El tamaño del "arco" es todo la zona del fondo.
+* Los jugadores de un mismo equipo no se pueden sobreponer.
+
+
+![Sencillos](generalmedia/tablerodobles.png)
+
+
+Un ejemplo grafico:
+
+Respuesta 1 | Respuesta 2
+----|----|
+![pasouno](generalmedia/pasouno.png) | ![pasodos](generalmedia/pasodos.png)
+Aqui Verde inicia. | Café decide responder atras para que Rosado tenga que cruzar el campo , Morado se ubica de tal forma de que no estorbe a la respuesta de Café. |
+
+Respuesta 3 | Respuesta 4
+----|----
+![pasotres](generalmedia/pasotres.png) | ![pasocuatro](generalmedia/pasocuatro.png)
+Rosa y Verde responden intercambiando de posición. | Morado se adelanta para que Verde tenga que cruzar el campo.
+
+Esto se repetirá hasta que un equipo se equivoque en el orden o se logre poner el disco en el arco.
+
+Esto implica que además de lograr golpear el disco/pelota se debe coordinar con el compañero para su turno de golpear y para que este no le estorbe a la hora de hacerlo.
 
 
 

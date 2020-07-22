@@ -33,7 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()  
+                .authorizeRequests()
+                .antMatchers("/register.html","/reglas.html").permitAll()
                 .anyRequest().authenticated()				
                 .and()
                 .formLogin()
@@ -48,10 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) throws Exception {    
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/imagenes/**");
+                .antMatchers("/getuser","/newuser","/resources/**", "/static/**", "/css/**", "/js/**", "/imagenes/**");
     }
 
     @Bean

@@ -23,7 +23,7 @@ public class Arbitro implements Runnable, Observer {
 
     private PelotaController pc;
     private JugadoresController jc;
-    private boolean bandera = true;
+    private boolean bandera = false;
     private Observer ob;
     private int[] puntaje;
     private Dir lastDir;
@@ -102,6 +102,7 @@ public class Arbitro implements Runnable, Observer {
 
     @Override
     public void run() {
+        bandera=true;
         while (bandera) {
             try {
                 Thread.sleep(8);
@@ -130,7 +131,10 @@ public class Arbitro implements Runnable, Observer {
         if (ob != null) {
             ob.notifyChangue();
         }
-
+    }
+    
+    public boolean corriendo(){
+        return bandera;
     }
     
     public void reiniciarPunto(){
