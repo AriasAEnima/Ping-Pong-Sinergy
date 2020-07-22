@@ -6,6 +6,9 @@
 package edu.escuelaing.arsw.Elements;
 
 import edu.escuelaing.arsw.Controllers.ServiciosFisica.Dir;
+import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
 import org.json.JSONObject;
 
 /**
@@ -70,6 +73,21 @@ public class Pelota extends Superficie implements Movible{
         jo.put("y", this.getY());
         return jo;
     }
+
+    public void setRelative(Mesa mesa) {
+      setX(mesa.getCenterX()-getWidth()/2);
+      setY(mesa.getCenterY()-getHeight()/2);
+    }
+    
+    @Override
+    public synchronized Map<Dir, Rectangle> getColisiones(){
+         Map<Dir,Rectangle> colisiones=new HashMap<Dir, Rectangle>();
+        colisiones.put(Dir.UP, new Rectangle(getX()+3, getY(), getWidth()-6, 10));
+        colisiones.put(Dir.DOWN, new Rectangle(getX()+3,getY()+getHeight()-10, getWidth()-6, 10));
+        colisiones.put(Dir.LEFT, new Rectangle(getX(), getY()+3, 10, getHeight()-6));
+        colisiones.put(Dir.RIGTH, new Rectangle(getX()+getWidth()-10, getY()+3, 10, getHeight()-6));
+        return colisiones;
+    }    
 
     
 }

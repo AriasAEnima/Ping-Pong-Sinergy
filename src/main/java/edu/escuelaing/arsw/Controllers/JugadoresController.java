@@ -41,8 +41,10 @@ public class JugadoresController {
     public JugadoresController(Mesa mesa,int njug) throws Exception {
         jugadores=new HashMap< >();
         for(int i=0; i<njug; i++){
-             jugadores.put("jugador"+(i+1), new Raqueta("jugador"+(i+1),150+300*(i%2), 50 + 170*(i/2), 50, 150));
+             jugadores.put("jugador"+(i+1), new Raqueta("jugador"+(i+1),150+850*(i%2), 50 + 170*(i/2), 50, 150));
         }     
+        
+        
         this.mesa=mesa;
     }
     

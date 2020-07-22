@@ -30,9 +30,9 @@ body *{
 }
 
 #container{
-    border: 1px solid red;
-    width: 701px;
-    height: 501px;
+    border: 1px solid black;
+    width: 1201px;
+    height: 701px;
     margin: auto;
 }
 

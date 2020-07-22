@@ -51,6 +51,7 @@ public class ServiciosFisica {
     public static Collection<Dir> nextDirPelota(Arbitro ar,Mesa mesa,Pelota pelota,Collection<Raqueta> jugadores){ 
         Map<Dir,Rectangle> ladospelota=pelota.getColisiones();
         Collection<Dir> ans=swapDirPelota(ladospelota,mesa.getColisiones());
+       
         if(ans.isEmpty()){           
             for (Raqueta r: jugadores){
                 ans= swapDirPelota(ladospelota,r.getColisiones());
@@ -61,6 +62,9 @@ public class ServiciosFisica {
             }        
             return null;
         }else{
+            if(ans.contains(Dir.LEFT) || ans.contains(Dir.RIGTH) ){
+                ar.notificarPunto(ans);
+            }
             return ans;
         }               
     }

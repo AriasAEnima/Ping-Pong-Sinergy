@@ -10,7 +10,10 @@ import edu.escuelaing.arsw.Elements.Mesa;
 import edu.escuelaing.arsw.Elements.Pelota;
 import edu.escuelaing.arsw.Elements.Raqueta;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -61,4 +64,14 @@ public class PelotaController {
         return ans;
         
     }
+
+    public void reiniciarPelota(Dir dirh,Dir dirv) {
+        pelota.setDir(dirh);
+        pelota.setDir(dirv);
+        pelota.setRelative(mesa);
+    }
+    
+    
+
+  
 }

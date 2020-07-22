@@ -20,19 +20,11 @@ public class pruebas {
     public static void main(String[] args){      
         try {   
             Arbitro a=new Arbitro();
-            a.PreparePartida(Dir.UP, Dir.LEFT);
-            print("Jugadores");
-            print(a.ubicacionJugadores());
-            print("Pelota");
-            print(a.ubicacionPelota());
-            Thread ta=new Thread(a);
-            ta.start();                    
+            a.PreparePartida(Dir.DOWN, Dir.RIGTH);      
              
-            for(int i=0 ; i<800;i++){   
-                a.MoverJugador("jugador1", Dir.RIGTH);
-                Thread.sleep(10);
-                print("Jugadores");              
-                print(a.ubicacionJugadores());   
+            for(int i=0 ; i<500;i++){   
+                a.continuar();
+                System.out.println(a.ubicacionPelota());          
             }          
             System.out.println("Vo a parar");
             a.pare();

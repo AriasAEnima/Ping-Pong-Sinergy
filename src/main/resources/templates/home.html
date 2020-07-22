@@ -6,10 +6,52 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Spring Security Example</title>
+       <head>
+        <title>Ping Pong Synergy Home</title>
+  
+   
+
+        <!--<link rel="stylesheet" type="text/css" href="css/login.css">-->
+        <link rel="stylesheet" th:href="@{/css/login.css}" />        
+        <!--<link rel="icon" type="image/png" href="imagenes/favicon.png"/>-->
+        <link rel="icon" type="image/png" th:href="@{/imagenes/favicon.png}" />
+        
     </head>
     <body>
-        <h1>Welcome!</h1>
+        <h1>Bienvenido !</h1>
+        <h3>Escoje tu sala </h3>
+        <div class="grid-container">
+            <div class="grid-item" onClick="seleccionarSala(1)">1</div>
+            <div class="grid-item" onClick="seleccionarSala(2)">2</div>
+            <div class="grid-item" onClick="seleccionarSala(3)">3</div>  
+            <div class="grid-item" onClick="seleccionarSala(4)">4</div>
+            <div class="grid-item" onClick="seleccionarSala(5)">5</div>
+            <div class="grid-item" onClick="seleccionarSala(6)">6</div>  
+            <div class="grid-item" onClick="seleccionarSala(7)">7</div>
+            <div class="grid-item" onClick="seleccionarSala(8)">8</div>
+            <div class="grid-item" onClick="seleccionarSala(9)">9</div>  
+        </div>
+        <script>
+            function readCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+                }
+                return null;
+            }
+            function seleccionarSala(n){
+             
+                document.cookie = "sala="+n;               
+                console.log(readCookie("sala"));
+                window.location.href = 'partida.html';
+               
+            }
+           
+
+        </script>
+
     </body>
 </html>
